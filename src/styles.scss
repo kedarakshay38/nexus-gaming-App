@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+/* Cyberpunk Theme Variables */
+:root {
+  --bg-color: #010101;
+  --text-color: #ffffff;
+  --accent-cyan: #00ffff;
+  --accent-magenta: #ff00ff;
+  --accent-yellow: #f3f00a;
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', monospace;
+  --card-bg: rgba(10, 10, 12, 0.8);
+  --border-glow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--accent-cyan);
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -10,10 +10,11 @@
 /node_modules
 npm-debug.log
 yarn-error.log
-
+specs/
 # IDEs and editors
 .specify
 .gemini
+GEMINI.md
 .idea/
 .project
 .classpath
