@@ -1,1 +1,52 @@
-<p>cart works!</p>
+<div class="cart-container">
+  <h1>YOUR SHOPPING CART</h1>
+
+  <div *ngIf="loading" class="loading">SYNCING DATABANKS...</div>
+
+  <div *ngIf="!loading && cartItems.length === 0" class="empty-cart">
+    <p>Your cart is empty. The digital shelves await.</p>
+    <a routerLink="/games" class="btn-primary">BROWSE CATALOG</a>
+  </div>
+
+  <div *ngIf="!loading && cartItems.length > 0" class="cart-content">
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <div class="item-img" *ngIf="item.game">
+          <img [src]="item.game.imageUrl" [alt]="item.game.title">
+        </div>
+        <div class="item-details" *ngIf="item.game">
+          <h3>{{ item.game.title }}</h3>
+          <p class="genre">{{ item.game.genre[0] }}</p>
+        </div>
+        <div class="item-price" *ngIf="item.game">
+          ${{ item.game.price.toFixed(2) }}
+        </div>
+        <div class="item-quantity">
+          <button (click)="updateQuantity(item.gameId, -1)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="updateQuantity(item.gameId, 1)">+</button>
+        </div>
+        <div class="item-total" *ngIf="item.game">
+          ${{ (item.game.price * item.quantity).toFixed(2) }}
+        </div>
+        <button class="remove-btn" (click)="removeItem(item.gameId)">×</button>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <div class="summary-box">
+        <h2>SUMMARY</h2>
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <span>${{ total.toFixed(2) }}</span>
+        </div>
+        <div class="summary-line total">
+          <span>Total</span>
+          <span>${{ total.toFixed(2) }}</span>
+        </div>
+        <button routerLink="/checkout" class="btn-primary checkout-btn">PROCEED TO CHECKOUT</button>
+        <button class="btn-clear" (click)="clearCart()">CLEAR CART</button>
+      </div>
+    </div>
+  </div>
+</div>

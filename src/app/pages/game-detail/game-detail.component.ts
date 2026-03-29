@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MockApiService } from '../../services/mock-api.service';
+import { CartService } from '../../services/cart.service';
 import { Game } from '../../models/game';
 
 @Component({
@@ -17,7 +18,8 @@ export class GameDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private api: MockApiService
+    private api: MockApiService,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -31,6 +33,8 @@ export class GameDetailComponent implements OnInit {
   }
 
   addToCart() {
-    console.log('Added to cart from details:', this.game?.id);
+    if (this.game) {
+      this.cartService.addToCart(this.game);
+    }
   }
 }
