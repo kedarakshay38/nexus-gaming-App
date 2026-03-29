@@ -1,24 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, delay, of, map, tap } from 'rxjs';
+import { Observable, delay, map, of } from 'rxjs';
 import { Game } from '../models/game';
-import { User } from '../models/user';
+import { MOCK_GAMES } from './mock-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockApiService {
-  private gamesUrl = 'assets/data/games.json';
-  private usersUrl = 'assets/data/users.json';
-  private latency = 500; // Simulate network latency
-
-  constructor(private http: HttpClient) { }
+  private latency = 500;
 
   getGames(search?: string, genre?: string, sort?: string): Observable<Game[]> {
-    return this.http.get<Game[]>(this.gamesUrl).pipe(
+    return of(MOCK_GAMES).pipe(
       delay(this.latency),
       map(games => {
-        let results = games;
+        let results = [...games];
         if (search) {
           const lowerSearch = search.toLowerCase();
           results = results.filter(g => g.title.toLowerCase().includes(lowerSearch));
@@ -37,9 +32,13 @@ export class MockApiService {
   }
 
   getGameById(id: string): Observable<Game | undefined> {
-    return this.http.get<Game[]>(this.gamesUrl).pipe(
+    return of(MOCK_GAMES).pipe(
       delay(this.latency),
-      map(games => games.find(g => g.id === id))
+      map(games => {
+        const game = games.find(g => g.id === id);
+        if (!game) throw new Error('Game not found');
+        return game;
+      })
     );
   }
 }

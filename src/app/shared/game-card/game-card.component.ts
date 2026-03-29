@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Game } from '../../models/game';
+import { CartService } from '../../services/cart.service';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-game-card',
@@ -13,15 +15,24 @@ import { Game } from '../../models/game';
 export class GameCardComponent {
   @Input() game!: Game;
 
+  constructor(
+    private cartService: CartService,
+    private wishlistService: WishlistService
+  ) {}
+
   addToCart(event: Event) {
     event.stopPropagation();
     event.preventDefault();
-    console.log('Added to cart:', this.game.id);
+    this.cartService.addToCart(this.game);
   }
 
   toggleWishlist(event: Event) {
     event.stopPropagation();
     event.preventDefault();
-    console.log('Toggled wishlist:', this.game.id);
+    this.wishlistService.toggleWishlist(this.game.id);
+  }
+
+  get isWishlisted(): boolean {
+    return this.wishlistService.isInWishlist(this.game.id);
   }
 }

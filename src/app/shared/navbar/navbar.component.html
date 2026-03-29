@@ -1,1 +1,29 @@
-<p>navbar works!</p>
+<nav class="navbar">
+  <div class="nav-brand">
+    <a routerLink="/" class="logo glitch-hover" data-text="NEXUS">NEXUS</a>
+  </div>
+
+  <div class="nav-links">
+    <a routerLink="/games" routerLinkActive="active">CATALOG</a>
+    <a routerLink="/wishlist" *ngIf="user" routerLinkActive="active">WISHLIST</a>
+    <a routerLink="/cart" routerLinkActive="active" class="cart-link">
+      CART
+      <span class="badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+    </a>
+  </div>
+
+  <div class="nav-auth">
+    <ng-container *ngIf="user; else authButtons">
+      <a routerLink="/profile" class="user-profile">
+        <span class="username">{{ user.username | uppercase }}</span>
+        <img [src]="user.avatarUrl" *ngIf="user.avatarUrl" class="avatar">
+      </a>
+      <button (click)="logout()" class="btn-logout">OUT</button>
+    </ng-container>
+
+    <ng-template #authButtons>
+      <a routerLink="/login" class="btn-login">LOGIN</a>
+      <a routerLink="/signup" class="btn-signup">SIGNUP</a>
+    </ng-template>
+  </div>
+</nav>

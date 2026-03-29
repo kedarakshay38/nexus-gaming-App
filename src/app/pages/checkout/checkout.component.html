@@ -1,1 +1,50 @@
-<p>checkout works!</p>
+<div class="checkout-container">
+  <div *ngIf="!isSuccess" class="checkout-view">
+    <h1>SECURE PROTOCOL: CHECKOUT</h1>
+    
+    <div class="checkout-grid">
+      <div class="order-summary">
+        <h2>ORDER SUMMARY</h2>
+        <div class="items-list">
+          <div class="item" *ngFor="let item of items">
+            <span class="title">{{ item.game?.title }} (x{{ item.quantity }})</span>
+            <span class="price">${{ (item.game?.price * item.quantity).toFixed(2) }}</span>
+          </div>
+        </div>
+        <div class="total-line">
+          <span>TOTAL CREDITS</span>
+          <span>${{ total.toFixed(2) }}</span>
+        </div>
+      </div>
+
+      <div class="payment-simulation">
+        <h2>PAYMENT AUTHORIZATION</h2>
+        <p>Your account will be charged {{ total.toFixed(2) }} credits from your primary databank.</p>
+        
+        <div class="security-check">
+          <label>AUTH TOKEN</label>
+          <input type="text" value="********-****-****-****-************" disabled class="cyber-input">
+        </div>
+
+        <button 
+          class="btn-primary confirm-btn" 
+          (click)="confirmPurchase()" 
+          [disabled]="isProcessing"
+        >
+          {{ isProcessing ? 'AUTHORIZING...' : 'FINALIZE TRANSACTION' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isSuccess" class="success-view">
+    <div class="success-icon">✓</div>
+    <h1>TRANSACTION COMPLETE</h1>
+    <p>Your digital licenses have been established. Access granted.</p>
+    <div class="order-id">TXNID: {{ transactionId }}</div>
+    <div class="actions">
+      <a routerLink="/games" class="btn-primary">CONTINUE BROWSING</a>
+      <a routerLink="/profile" class="btn-secondary">VIEW PROFILE</a>
+    </div>
+  </div>
+</div>

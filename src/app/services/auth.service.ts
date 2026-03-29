@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, delay, tap, map } from 'rxjs';
 import { User } from '../models/user';
-import { HttpClient } from '@angular/common/http';
+import { MOCK_USERS } from './mock-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private usersUrl = 'assets/data/users.json';
-  
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor() {
     if (typeof window !== 'undefined') {
       const storedUser = localStorage.getItem('currentUser');
       if (storedUser) {
@@ -26,7 +24,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<User> {
-    return this.http.get<User[]>(this.usersUrl).pipe(
+    return of(MOCK_USERS).pipe(
       delay(500),
       map(users => {
         const user = users.find(u => u.email === email) || users[0];

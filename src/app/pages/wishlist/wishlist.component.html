@@ -1,1 +1,17 @@
-<p>wishlist works!</p>
+<div class="wishlist-container">
+  <div class="header">
+    <h1>SAVED DATA (WISHLIST)</h1>
+    <p>Titles marked for future acquisition.</p>
+  </div>
+
+  <div *ngIf="loading" class="loading">RETRIEVING ENCRYPTED DATA...</div>
+
+  <div *ngIf="!loading && wishlistGames.length === 0" class="empty-state">
+    <p>Your wishlist is a void. Populating it is recommended.</p>
+    <a routerLink="/games" class="btn-primary">EXPLORE CATALOG</a>
+  </div>
+
+  <div *ngIf="!loading && wishlistGames.length > 0" class="wishlist-content">
+    <app-product-grid [games]="wishlistGames"></app-product-grid>
+  </div>
+</div>
