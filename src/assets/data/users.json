@@ -1,0 +1,10 @@
+[
+  {
+    "id": "u-123",
+    "username": "ZeroCool",
+    "email": "zerocool@example.com",
+    "avatarUrl": "assets/img/avatar.png",
+    "isAuthenticated": true,
+    "wishlistIds": ["1"]
+  }
+]

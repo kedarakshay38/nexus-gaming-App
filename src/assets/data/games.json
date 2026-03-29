@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "title": "Neon Skyline",
+    "description": "A deep narrative cyberpunk RPG.",
+    "price": 59.99,
+    "genre": ["RPG", "Cyberpunk"],
+    "releaseDate": "2026-05-15",
+    "rating": 4.8,
+    "imageUrl": "assets/img/neon-skyline.jpg",
+    "screenshots": [],
+    "requirements": {
+      "os": "Windows 11",
+      "cpu": "Intel Core i7",
+      "ram": "16GB",
+      "gpu": "RTX 3070",
+      "storage": "50GB SSD"
+    }
+  },
+  {
+    "id": "2",
+    "title": "Data Runners",
+    "description": "Fast-paced futuristic shooter.",
+    "price": 29.99,
+    "genre": ["FPS", "Action"],
+    "releaseDate": "2025-11-20",
+    "rating": 4.5,
+    "imageUrl": "assets/img/data-runners.jpg",
+    "screenshots": [],
+    "requirements": {
+      "os": "Windows 10",
+      "cpu": "Intel Core i5",
+      "ram": "8GB",
+      "gpu": "GTX 1660",
+      "storage": "20GB"
+    }
+  }
+]
