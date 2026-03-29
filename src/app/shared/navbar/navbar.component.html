@@ -8,7 +8,7 @@
     <a routerLink="/wishlist" *ngIf="user" routerLinkActive="active">WISHLIST</a>
     <a routerLink="/cart" routerLinkActive="active" class="cart-link">
       CART
-      <span class="badge" *ngIf="false">0</span> <!-- Badge will be implemented in Phase 5 -->
+      <span class="badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
     </a>
   </div>
 
