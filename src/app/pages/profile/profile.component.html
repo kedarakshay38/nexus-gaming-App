@@ -1,1 +1,39 @@
-<p>profile works!</p>
+<div class="profile-container" *ngIf="user">
+  <div class="header">
+    <h1>IDENTITY CONFIRMED</h1>
+    <button class="btn-primary" (click)="logout()">DISCONNECT</button>
+  </div>
+
+  <div class="profile-card">
+    <div class="avatar-section">
+      <img [src]="user.avatarUrl" alt="Avatar" class="avatar" *ngIf="user.avatarUrl">
+      <div class="avatar-placeholder" *ngIf="!user.avatarUrl">
+        {{ user.username.charAt(0) | uppercase }}
+      </div>
+    </div>
+    
+    <div class="info-section">
+      <div class="info-group">
+        <label>ALIAS (USERNAME)</label>
+        <p>{{ user.username }}</p>
+      </div>
+      
+      <div class="info-group">
+        <label>CONTACT NODE (EMAIL)</label>
+        <p>{{ user.email }}</p>
+      </div>
+      
+      <div class="info-group">
+        <label>SYSTEM ID</label>
+        <p class="monospace">{{ user.id }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="history-section">
+    <h2>TRANSACTION HISTORY</h2>
+    <div class="empty-state">
+      <p>No past transactions found in databanks.</p>
+    </div>
+  </div>
+</div>

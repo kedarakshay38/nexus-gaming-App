@@ -1,1 +1,59 @@
-<p>signup works!</p>
+<div class="auth-container">
+  <div class="auth-box">
+    <h1 class="glitch" data-text="NEW IDENTITY">NEW IDENTITY</h1>
+    <p class="subtitle">Register to the Nexus network</p>
+
+    <div *ngIf="error" class="error-msg">
+      {{ error }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #signupForm="ngForm">
+      <div class="form-group">
+        <label for="username">ALIAS (USERNAME)</label>
+        <input 
+          type="text" 
+          id="username" 
+          name="username" 
+          [(ngModel)]="username" 
+          class="cyber-input"
+          placeholder="ZeroCool"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">CONTACT NODE (EMAIL)</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          [(ngModel)]="email" 
+          class="cyber-input"
+          placeholder="user@nexus.io"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">SECURITY KEY (PASSWORD)</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          [(ngModel)]="password" 
+          class="cyber-input"
+          placeholder="••••••••"
+          required
+        >
+      </div>
+
+      <button type="submit" class="btn-primary auth-btn" [disabled]="loading || signupForm.invalid">
+        {{ loading ? 'CREATING...' : 'ESTABLISH IDENTITY' }}
+      </button>
+    </form>
+
+    <div class="auth-links">
+      <p>Already in the network? <a routerLink="/login">Initialize connection</a></p>
+    </div>
+  </div>
+</div>
