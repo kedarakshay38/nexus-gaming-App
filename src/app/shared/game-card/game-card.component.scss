@@ -1,0 +1,120 @@
+.game-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  border: 1px solid rgba(var(--accent-cyan), 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  height: 100%;
+
+  &:hover {
+    box-shadow: var(--border-glow);
+    transform: translateY(-5px);
+    border-color: var(--accent-cyan);
+
+    .image-container .game-image {
+      transform: scale(1.05);
+    }
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+
+    .game-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .badge-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      .wishlist-btn {
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid var(--accent-magenta);
+        color: var(--accent-magenta);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          background: var(--accent-magenta);
+          color: white;
+        }
+      }
+    }
+  }
+
+  .card-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .title {
+      margin: 0 0 10px 0;
+      font-size: 1.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: auto; /* Push footer down */
+
+      .genre {
+        color: var(--accent-yellow);
+      }
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 10px;
+
+      .price {
+        font-family: var(--font-heading);
+        font-size: 1.1rem;
+        color: var(--accent-cyan);
+      }
+
+      .add-cart-btn {
+        background: transparent;
+        color: var(--accent-cyan);
+        border: 1px solid var(--accent-cyan);
+        padding: 5px 15px;
+        font-family: var(--font-heading);
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: all 0.2s;
+
+        &:hover {
+          background: var(--accent-cyan);
+          color: black;
+          box-shadow: 0 0 5px var(--accent-cyan);
+        }
+      }
+    }
+  }
+}

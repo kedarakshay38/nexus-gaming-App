@@ -1,1 +1,32 @@
-<p>games works!</p>
+<div class="games-container">
+  <div class="header">
+    <h1>CATALOG</h1>
+    
+    <div class="controls">
+      <div class="search-box">
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          (ngModelChange)="onSearchChange()" 
+          placeholder="SEARCH DATABANKS..."
+          class="cyber-input"
+        >
+      </div>
+
+      <div class="filters">
+        <select [(ngModel)]="selectedGenre" (change)="onFilterChange()" class="cyber-select">
+          <option value="">ALL GENRES</option>
+          <option *ngFor="let genre of genres" [value]="genre">{{ genre | uppercase }}</option>
+        </select>
+
+        <select [(ngModel)]="selectedSort" (change)="onFilterChange()" class="cyber-select">
+          <option value="">SORT: DEFAULT</option>
+          <option value="priceAsc">PRICE: LOW TO HIGH</option>
+          <option value="priceDesc">PRICE: HIGH TO LOW</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <app-product-grid [games]="games" [loading]="loading"></app-product-grid>
+</div>

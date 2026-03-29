@@ -1,0 +1,50 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px;
+  color: var(--accent-magenta);
+  font-family: var(--font-body);
+  border: 1px dashed var(--accent-magenta);
+  background: rgba(var(--accent-magenta), 0.05);
+}
+
+/* Skeleton Loading Animation */
+.skeleton-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding-bottom: 20px;
+  overflow: hidden;
+
+  .skeleton-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(90deg, #111 25%, #222 50%, #111 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  .skeleton-text {
+    height: 15px;
+    margin: 15px;
+    background: linear-gradient(90deg, #111 25%, #222 50%, #111 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    
+    &.title { width: 70%; height: 20px; }
+    &.subtitle { width: 40%; margin-top: 5px; }
+  }
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
