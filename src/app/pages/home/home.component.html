@@ -1,1 +1,14 @@
-<p>home works!</p>
+<div class="home-container">
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="glitch" data-text="WELCOME TO NEXUS">WELCOME TO NEXUS</h1>
+      <p>Your gateway to the digital frontier.</p>
+      <a routerLink="/games" class="btn-primary">BROWSE CATALOG</a>
+    </div>
+  </section>
+
+  <section class="featured">
+    <h2>FEATURED TITLES</h2>
+    <app-product-grid [games]="featuredGames" [loading]="loading"></app-product-grid>
+  </section>
+</div>

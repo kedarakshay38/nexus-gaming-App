@@ -1,0 +1,21 @@
+<div class="grid-container" *ngIf="!loading; else skeleton">
+  <ng-container *ngIf="games.length > 0; else noResults">
+    <app-game-card *ngFor="let game of games" [game]="game"></app-game-card>
+  </ng-container>
+  
+  <ng-template #noResults>
+    <div class="empty-state">
+      <p>No titles found matching your criteria. Disconnect and try again.</p>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #skeleton>
+  <div class="grid-container loading">
+    <div class="skeleton-card" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-text title"></div>
+      <div class="skeleton-text subtitle"></div>
+    </div>
+  </div>
+</ng-template>
