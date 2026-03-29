@@ -1,9 +1,14 @@
 <a [routerLink]="['/games', game.id]" class="game-card">
   <div class="image-container">
-    <!-- Placeholder for missing image -->
     <img [src]="game.imageUrl || 'assets/img/placeholder.png'" [alt]="game.title" class="game-image">
     <div class="badge-container">
-      <button class="wishlist-btn" (click)="toggleWishlist($event)">♥</button>
+      <button 
+        class="wishlist-btn" 
+        [class.active]="isWishlisted"
+        (click)="toggleWishlist($event)"
+      >
+        ♥
+      </button>
     </div>
   </div>
   <div class="card-content">
