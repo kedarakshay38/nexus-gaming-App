@@ -1,0 +1,114 @@
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--accent-cyan);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+
+    h1 { margin: 0; font-size: 2rem; color: var(--accent-cyan); }
+    
+    .btn-primary {
+      background: transparent;
+      color: var(--accent-magenta);
+      border-color: var(--accent-magenta);
+      &:hover {
+        background: var(--accent-magenta);
+        color: white;
+        box-shadow: 0 0 10px var(--accent-magenta);
+      }
+    }
+  }
+
+  .profile-card {
+    display: flex;
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    padding: 30px;
+    gap: 40px;
+    margin-bottom: 40px;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .avatar-section {
+      .avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 2px solid var(--accent-cyan);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+      }
+
+      .avatar-placeholder {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 2px solid var(--accent-cyan);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 4rem;
+        background: rgba(0, 255, 255, 0.1);
+        color: var(--accent-cyan);
+        font-family: var(--font-heading);
+      }
+    }
+
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+      gap: 15px;
+
+      .info-group {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 10px;
+
+        label {
+          color: var(--accent-yellow);
+          font-size: 0.8rem;
+          margin-bottom: 5px;
+          display: block;
+        }
+
+        p {
+          margin: 0;
+          font-size: 1.2rem;
+          color: white;
+
+          &.monospace {
+            font-family: var(--font-body);
+            color: #888;
+          }
+        }
+      }
+    }
+  }
+
+  .history-section {
+    h2 {
+      border-bottom: 1px solid rgba(255, 0, 255, 0.5);
+      padding-bottom: 10px;
+      color: var(--accent-magenta);
+      margin-bottom: 20px;
+    }
+
+    .empty-state {
+      padding: 30px;
+      text-align: center;
+      background: rgba(255, 0, 255, 0.05);
+      border: 1px dashed var(--accent-magenta);
+      color: #aaa;
+    }
+  }
+}

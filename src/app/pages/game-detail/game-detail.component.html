@@ -1,1 +1,54 @@
-<p>game-detail works!</p>
+<div class="detail-container" *ngIf="!loading; else skeleton">
+  <div *ngIf="game; else notFound" class="game-view">
+    <div class="hero-image" [style.backgroundImage]="'url(' + (game.imageUrl || 'assets/img/placeholder.png') + ')'"></div>
+    
+    <div class="content">
+      <div class="main-info">
+        <h1>{{ game.title }}</h1>
+        <div class="tags">
+          <span class="genre" *ngFor="let genre of game.genre">{{ genre }}</span>
+          <span class="rating">RATING: {{ game.rating }}/5.0</span>
+        </div>
+        <p class="description">{{ game.description }}</p>
+
+        <div class="requirements">
+          <h3>SYSTEM REQUIREMENTS</h3>
+          <ul>
+            <li><strong>OS:</strong> {{ game.requirements.os }}</li>
+            <li><strong>CPU:</strong> {{ game.requirements.cpu }}</li>
+            <li><strong>RAM:</strong> {{ game.requirements.ram }}</li>
+            <li><strong>GPU:</strong> {{ game.requirements.gpu }}</li>
+            <li><strong>Storage:</strong> {{ game.requirements.storage }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="buy-box">
+          <span class="price">${{ game.price.toFixed(2) }}</span>
+          <button class="add-cart-btn btn-primary" (click)="addToCart()">ADD TO CART</button>
+        </div>
+        
+        <div class="meta">
+          <p><strong>Release Date:</strong> {{ game.releaseDate }}</p>
+          <p><strong>ID:</strong> {{ game.id }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #notFound>
+    <div class="not-found">
+      <h1>404: DATA NOT FOUND</h1>
+      <p>The requested title does not exist in our databanks.</p>
+      <a routerLink="/games" class="btn-primary">RETURN TO CATALOG</a>
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #skeleton>
+  <div class="detail-container loading">
+    <div class="skeleton-hero"></div>
+    <div class="skeleton-content"></div>
+  </div>
+</ng-template>
