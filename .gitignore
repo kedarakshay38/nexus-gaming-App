@@ -10,10 +10,10 @@
 /node_modules
 npm-debug.log
 yarn-error.log
-/nexus-gaming
+
 # IDEs and editors
-.specify/
-.gemini/
+.specify
+.gemini
 .idea/
 .project
 .classpath
