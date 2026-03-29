@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, delay, of, map, tap } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, delay, map, catchError, throwError } from 'rxjs';
 import { Game } from '../models/game';
-import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockApiService {
   private gamesUrl = 'assets/data/games.json';
-  private usersUrl = 'assets/data/users.json';
-  private latency = 500; // Simulate network latency
+  private latency = 500;
 
   constructor(private http: HttpClient) { }
 
@@ -32,14 +30,31 @@ export class MockApiService {
           results.sort((a, b) => b.price - a.price);
         }
         return results;
-      })
+      }),
+      catchError(this.handleError)
     );
   }
 
   getGameById(id: string): Observable<Game | undefined> {
     return this.http.get<Game[]>(this.gamesUrl).pipe(
       delay(this.latency),
-      map(games => games.find(g => g.id === id))
+      map(games => {
+        const game = games.find(g => g.id === id);
+        if (!game) throw new Error('Game not found');
+        return game;
+      }),
+      catchError(this.handleError)
     );
+  }
+
+  private handleError(error: HttpErrorResponse | Error) {
+    let errorMessage = 'An unknown error occurred!';
+    if (error instanceof HttpErrorResponse) {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    } else {
+      errorMessage = error.message;
+    }
+    console.error(errorMessage);
+    return throwError(() => new Error(errorMessage));
   }
 }
